@@ -1,0 +1,62 @@
+using System;
+using System.Collections.Generic;
+
+class FoodMenu
+{
+    static List<string> menuItems = new List<string>
+    {
+        "Lasagne alla Bolognes - $5.99",
+        "Fettuccine al Pomodoro - $6.49",
+        "Gnocchi di Patate - $4.99",
+        "Melanzane alla Parmigiana - $2.99",
+        "Pollo alla Cacciatora - $3.99",
+        "Pizza Margherita - $2.50",
+        "Costoletta alla Milanese - $2.99",
+        "Vitello Tonnato - $2.70"
+    };
+
+    static List<double> menuPrices = new List<double>
+    {
+        5.99, 6.49, 4.99, 2.99, 3.99, 2.50, 2.99, 2.70
+    };
+
+    static void Main(string[] args)
+    {
+        double totalPrice = 0;
+        Console.WriteLine("Welcome to Jaaaadea's Italian Cuisine! Enjoy");
+
+        while (true)
+        {
+            Console.WriteLine("What would you like to order?");
+            Console.WriteLine("Food Menu:");
+            DisplayMenu();
+            Console.WriteLine("9. Exit");
+            Console.WriteLine("\nEnter the number of your selection:");
+            int choice = int.Parse(Console.ReadLine());
+
+            if (choice >= 1 && choice <= menuItems.Count)
+            {
+                totalPrice += menuPrices[choice - 1];
+                Console.WriteLine($"You have selected {menuItems[choice - 1]}. That will be ${menuPrices[choice - 1]}. Enjoy your meal!");
+            }
+            else if (choice == menuItems.Count + 1)
+            {
+                Console.WriteLine("Your total price is: $" + totalPrice);
+                Console.WriteLine("Thank you for dining! Have a good day! And make sure to come back!");
+                return;
+            }
+            else
+            {
+                Console.WriteLine("Invalid selection. Please try again.");
+            }
+        }
+    }
+
+    static void DisplayMenu()
+    {
+        for (int i = 0; i < menuItems.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {menuItems[i]}");
+        }
+    }
+}
